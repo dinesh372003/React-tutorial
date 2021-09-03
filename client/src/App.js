@@ -9,6 +9,7 @@ function App()
         res.json();
       }
     })
+    .then({})
   return (
     <div> 
       <p>Hello M.Dinesh</p>
