@@ -11,20 +11,18 @@ app.use(bodyParser.json());
 
 app.listen(PORT);
 console.log("Listening on port "+PORT);
-app.get("/",(req,res)=>
-{
-    res.send("Your setup is ok");
-})
 
 //Connect mongoDB
 mongoose.connect(MONGO_URL,{useNewUrlParser:true,useUnifiedTopology:true})
-    .then(result=>
-        {
-            const users=new User({name:"M.Dinesh",team:"ABCD"})
-            users.save()
-            .then(result=>console.log("Dinesh saved"))
-            .catch(err=>console.log(err));
-        })
+    .then(result=>console.log("MongoDB connected.."))
     .catch(err=>console.log(err));
 
-//Make Router
+app.get("/",(req,res)=>
+{
+    User.find()
+    .then(datas=>
+        {
+            res.json(datas);
+        })
+    .catch(err=>console.log(err));
+})
