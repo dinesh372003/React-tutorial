@@ -2,7 +2,7 @@ import React from 'react';
 
 function App() 
 {
-  fetch()
+  fetch("/")
   return (
     <div> 
       <p>Hello M.Dinesh</p>
