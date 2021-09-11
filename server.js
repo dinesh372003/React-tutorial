@@ -14,10 +14,10 @@ console.log("Listening on port "+PORT);
 
 //Connect mongoDB
 mongoose.connect(MONGO_URL,{useNewUrlParser:true,useUnifiedTopology:true})
-    .then(result=>console.log("MongoDB connected.."))
-    .catch(err=>console.log(err));
+        .then(result=>console.log("MongoDB connected.."))
+        .catch(err=>console.log(err))
 
-app.get("/",(req,res)=>
+app.get("*",(req,res)=>
 {
     User.find()
     .then(datas=>

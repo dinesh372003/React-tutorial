@@ -1,0 +1,33 @@
+.Hi
+{
+    color:red;
+    background-color: grey;
+}
+.jkl
+{
+  position: relative;
+  width:100%;
+} 
+
+.jk
+{
+  text-decoration: none;
+  color: black;
+}
+.jk:hover
+{
+  color:#6D63FF;
+  text-decoration: none;
+}
+.asd
+{
+  width:100%;
+}
+.fs-2
+{
+  font-size: 25px;
+}
+.fw-bold
+{
+  font-weight: 1000;
+}
