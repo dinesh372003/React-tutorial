@@ -19,9 +19,29 @@
   color:#6D63FF;
   text-decoration: none;
 }
-.asd
+
+.Inside-C
+{
+
+  padding: 0 18px;
+  background-color: white;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.2s ease-out;
+
+}
+
+
+
+
+/* Short styles */
+.w-100
 {
   width:100%;
+}
+.fs-1
+{
+  font-size: 22.5px;
 }
 .fs-2
 {
@@ -30,4 +50,8 @@
 .fw-bold
 {
   font-weight: 1000;
+}
+.ws
+{
+  word-spacing: 25px;
 }
