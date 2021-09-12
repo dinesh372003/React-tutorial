@@ -1,37 +1,25 @@
-import React,{Component} from 'react';
-import {Navbar,Container} from 'react-bootstrap';
+import React,{useState,useRef} from 'react';
+import {Navbar} from 'react-bootstrap';
 import '../Styles/Sidebar.css';
-function Sidebar() 
+function Sidebar ()
 {
-  constructor(props) 
+  const [Active, setActive] = useState("");
+  const [Height, setHeight] = useState("0px");
+  const [Rotate, setRotate] = useState("accordion__icon");
+  const content = useRef(null);
+
+
+  function toggleclassactive()
   {
-    // super(props);
-    this.state = {
-      maxHeight:"0px"
-    };
-    toggleheight=()=>
-    {
-      this.setstate({maxHeight:"25px"})
-    };
+    setActive(Active===""?"active":"");
+    setHeight(Active==="active"?"0px":`${content.current.scrollHeight}px`);
+    setRotate(Active === "active" ? "accordion__icon" : "accordion__icon rotate");
   }
-  function accordion(a,b)
-  {
-    const clickedclass=document.getElementsByClassName(a);
-    const toggleaccordion=document.getElementsByClassName(b);
-    console.log(clickedclass,toggleaccordion);
-    clickedclass.style.Color="red";
-    // if(toggleaccordion.style.maxHeight==0)
-    // {
-    //   toggleaccordion.style.maxHeight = toggleaccordion.scrollHeight+"px";
-    // }
-    // else
-    // {
-    //   toggleaccordion.style.maxHeight=0;
-    // }
-  }
-  return (
+
+
+return (
         <>
-  <Navbar id="sidebar" className="ms-0 p-0"style={{width:"17rem",height:"100vh",display:"block"}}>
+  <Navbar id="sidebar" className="ms-0 p-0">
 {/*
 
 User Name
@@ -71,50 +59,44 @@ Link to Dashboard
 
 */}
 
+
 {/* 
 
 List of Classes
 
 */}
-{/* <style>
-.accordion {
-  background-color: #eee;
-  color: #444;
-  cursor: pointer;
-  padding: 18px;
-  width: 100%;
-  border: none;
-  text-align: left;
-  outline: none;
-  font-size: 15px;
-  transition: 0.4s;
-}
-
-.active, .accordion:hover {
-  background-color: #ccc;
-}
-
-.panel {
-  padding: 0 18px;
-  background-color: white;
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height 0.2s ease-out;
-}
-</style> */}
-
 <button 
   style={{textAlign:"start",border:"0"}}
-  className="Classes w-100 fs-1 fw-bold py-2 px-3 mb-3 bg-light"
-  onClick={this.toggleheight}>
-    Classes
+  className="Classes w-100 fs-1 fw-bold py-2 px-3 mb-3 bg-light d-flex"
+  onClick={toggleclassactive}>
+    
+    <i class="bi bi-collection-fill"></i> 
+    <div className="px-3 d-inline-block">
+      
+      Classes
+    
+    </div> 
+    <div className={`${Rotate}`}>
+      <i class="bi bi-chevron-down "></i>
+    </div>
 </button>
 
-<div className="Inside-C">
-  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-</div>
+{/* 
 
-<button className="Timetable w-100">Timetable</button>
+Closing
+List of Classes
+
+*/}
+
+<div className="Inside-C" ref={content} style={{maxHeight:`${Height}`}}>
+  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+    abcdefghijklmnopqrstuvqxyz
+  </p>
+</div>
+<div>
+  Hello
+</div>
+{/* <button className="Timetable w-100">Timetable</button>
 <div className="Inside-T">
   <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
 </div>
@@ -123,7 +105,7 @@ List of Classes
 <div className="Inside-A">
   <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
 </div>
-
+ */}
 {/* <script>
 var acc = document.getElementsByClassName("accordion");
 var i;
@@ -180,7 +162,7 @@ Closing List of Classes
 */}
   </Navbar>
 </>
-    )
+    );
+// }
 }
-
 export default Sidebar

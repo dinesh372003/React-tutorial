@@ -22,15 +22,30 @@
 
 .Inside-C
 {
-
   padding: 0 18px;
   background-color: white;
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height 0.2s ease-out;
-
+  overflow:hidden;
+  transition:0.4s ease;
 }
 
+.accordion__icon {
+  margin-left: auto;
+  transition: transform 0.6s ease;
+}
+
+.rotate 
+{
+  transform:rotate(-180deg);
+}
+
+
+
+#sidebar
+{
+  width:17rem;
+  height:100vh;
+  display:block;
+}
 
 
 
