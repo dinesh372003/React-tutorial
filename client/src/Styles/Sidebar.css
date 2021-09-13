@@ -20,7 +20,17 @@
   text-decoration: none;
 }
 
-.Inside-C
+.Accordion
+{
+  border:0;
+
+  /* border-top:0.05px solid rgb(168, 168, 168);
+  border-bottom:0.05px solid rgb(168, 168, 168) ;
+  border-left: 0.05px solid rgb(168, 168, 168);
+  border-right: 0.05px solid rgb(168, 168, 168); */
+  border-radius: 2px;
+}
+.InsideAcc
 {
   padding: 0 18px;
   background-color: white;
@@ -45,9 +55,15 @@
   width:17rem;
   height:100vh;
   display:block;
+  overflow-x: scroll;
+  border-right: 0.2px solid rgb(168, 168, 168);
+  box-shadow: 3px 3px 10px rgba(168, 168, 168, 0.1);
 }
 
-
+#sidebar::-webkit-scrollbar 
+{
+  display: none;
+}
 
 /* Short styles */
 .w-100

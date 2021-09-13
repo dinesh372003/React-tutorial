@@ -1,38 +1,48 @@
-import React,{useState,useEffect} from 'react';
+import React,{Component} from 'react';
 import Check from './Component/Check.js';
 import Sidebar from './Component/Sidebar.js';
 import './Styles/Sidebar.css';
-// import axios from 'axios';
-function App() 
+import axios from 'axios';
+class App extends Component 
 {
-  const [data,setData]=useState([{
-    _id:0,
-    name:"",
-    teams:"",
-  }]);
+    state=
+    {
+      Users:[],
+    };
 
-  useEffect(()=>
+  fetchBooks=()=> 
   {
-    fetch("/abcd")
-    .then(res=>{
+    fetch('/users')
+    .then(res=>
+      {
         if(res.ok)
         {
-          return res.json()
+          return res.json();
         }
       })
-      .then(datas=>{
-        setData(datas);
-        // console.log(data);
-        // console.log("Storing Successfull");
+    .then(data=>
+      {
+        this.setState({Users:data});
+        console.log(this.state);    
       })
-  
-    },[]);
+  }
+
+  componentDidMount() 
+  {
+    this.fetchBooks(this);
+  }
+    
+  render()
+  {  
 
   return <div> 
+
       <Sidebar />
-      {/* <Check data={data} /> */}
+      {/* {Users.map(book => (
+        <li key={book.id}>{book.name}</li>  
+       ))} */}
     </div>
-}
+}}
 export default App;
 
 //state
