@@ -6,7 +6,8 @@ function Accordion (props)
     const [Height, setHeight] = useState("0px");
     const [Rotate, setRotate] = useState("accordion__icon");
     const content = useRef(null);
-    
+    const prop=props.accordion;
+
     function toggleclassactive()
     {
       setActive(Active===""?"active":"");
@@ -16,8 +17,6 @@ function Accordion (props)
   
     return (
         <div>
-            {props.accordion.map(prop=>(
-                <div key={prop.key}>
         <button 
             style={{textAlign:"start",marginBottom:"1px"}}
             className="Accordion w-100 fs-1 fw-bold py-2 px-3 mb-2 bg-light d-flex"
@@ -40,8 +39,6 @@ function Accordion (props)
             </p>
             </div>
             </div>
-            ))}
-        </div>
     )
 }
 export default Accordion;

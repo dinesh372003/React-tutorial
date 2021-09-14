@@ -66,8 +66,9 @@ Closing
 Link to Dashboard
 
 */}
-
-<Accordion accordion={accordion}/>
+{accordion.map(acc=>(
+<Accordion accordion={acc}/>
+))}
 {/* 
 
 List of Classes
