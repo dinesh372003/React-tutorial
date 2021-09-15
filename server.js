@@ -13,7 +13,6 @@ var data;
 
 app.listen(PORT);
 console.log("Listening on port "+PORT);
-console.log(database);
 //Connect mongoDB
 mongoose.connect(database,{useNewUrlParser:true,useUnifiedTopology:true})
     .then(result=>
@@ -21,7 +20,7 @@ mongoose.connect(database,{useNewUrlParser:true,useUnifiedTopology:true})
         console.log("Connected MongoDb...");
     })
     .catch((err)=>console.log(err))
-    app.use(express.static(path.join(__dirname, '../client/build')));
+    app.use(express.static(path.join(__dirname, '/client/build')));
 app.get("/api/users",(req,res)=>
 {
     User.find()
@@ -34,8 +33,12 @@ app.get("/api/users",(req,res)=>
 })
 app.get('/', function (req,res) 
 {
-    res.sendFile(path.join(__dirname, '../client/build', 'index.html'));
+    res.sendFile(path.join(__dirname, '/client/build', 'index.html'));
 });
+app.get("/user/login",(rea,res)=>
+{
+    res.sendFile(path.join(__dirname, '/client/build', 'login.html'));
+})
 // app.readFile("./client/public/index.html", function(err, data) {
 //      data = JSON.parse(data);
 //     // ...
