@@ -6,7 +6,7 @@ function Accordion (props)
     const [Height, setHeight] = useState("0px");
     const [Rotate, setRotate] = useState("accordion__icon");
     const content = useRef(null);
-    const prop=props.accordion;
+    // const prop=props.accordion;
 
     function toggleclassactive()
     {
@@ -22,10 +22,10 @@ function Accordion (props)
             className="Accordion w-100 fs-1 fw-bold py-2 px-3 mb-2 bg-light d-flex"
             onClick={toggleclassactive}>
     
-            <i className={`${prop.icon}`}></i> 
+            <i className={`${props.icon}`}></i> 
             <div className="px-3 d-inline-block">
       
-            {prop.title}
+            {props.title}
     
     </div> 
     <div className={`${Rotate}`}>
@@ -35,7 +35,9 @@ function Accordion (props)
 
            <div className="InsideAcc" ref={content} style={{maxHeight:`${Height}`}}>
             <p>
-                {prop.contents}
+                {(props.contents).map(content=>(
+                    <li>{content}</li>
+                ))}
             </p>
             </div>
             </div>

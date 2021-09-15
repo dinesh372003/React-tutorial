@@ -6,8 +6,9 @@ require("dotenv").config();
 const{PORT,MONGODB_USERNAME,MONGODB_PASSWORD}=process.env;
 const User=require('./Schema/userschema');
 app.use(bodyParser.json());
+const path = require('path');
 const database="mongodb+srv://"+MONGODB_USERNAME+":"+MONGODB_PASSWORD+"@school.0eq55.mongodb.net/Project?retryWrites=true&w=majority";
-
+var data;
 
 
 app.listen(PORT);
@@ -20,12 +21,22 @@ mongoose.connect(database,{useNewUrlParser:true,useUnifiedTopology:true})
         console.log("Connected MongoDb...");
     })
     .catch((err)=>console.log(err))
-app.get("/users",(req,res)=>
+    app.use(express.static(path.join(__dirname, '../client/build')));
+app.get("/api/users",(req,res)=>
 {
     User.find()
     .then(datas=>
         {
+            data=datas;
             res.json(datas);
         })
     .catch(err=>console.log(err));
 })
+app.get('/', function (req,res) 
+{
+    res.sendFile(path.join(__dirname, '../client/build', 'index.html'));
+});
+// app.readFile("./client/public/index.html", function(err, data) {
+//      data = JSON.parse(data);
+//     // ...
+//     })

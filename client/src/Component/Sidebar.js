@@ -1,17 +1,21 @@
-import React,{useState,useRef} from 'react';
+import React,{useEffect} from 'react';
 import {Navbar} from 'react-bootstrap';
 import '../Styles/Sidebar.css';
 import Accordion from './Accordion';
-function Sidebar ()
+function Sidebar (props)
 {
+  console.log(props.Users);
+// useEffect(
+//   console.log(props.Users),[]
+// )
 const accordion=
 [
-  {
-    "key":"C",
-    "title":"Classes",
-    "icon":"bi bi-collection-fill",
-    "contents":"Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat abcdefghijklmnopqrstuvqxyz"
-  },
+  // {
+  //   "key":"C",
+  //   "title":"Classes",
+  //   "icon":"bi bi-collection-fill",
+  //   "contents":Users.className
+  // },
   {
     "key":"T",
     "title":"Timetable",
@@ -66,9 +70,15 @@ Closing
 Link to Dashboard
 
 */}
-{accordion.map(acc=>(
-<Accordion accordion={acc}/>
-))}
+<Accordion  
+    title={"Classes"}
+    icon={"bi bi-collection-fill"}
+    contents={props.Users.classname}
+/>
+
+{/* {accordion.map(acc=>(
+<Accordion key={acc.key} accordion={acc}/>
+))} */}
 {/* 
 
 List of Classes

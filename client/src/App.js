@@ -1,18 +1,20 @@
 import React,{Component} from 'react';
-import Check from './Component/Check.js';
+// import Check from './Component/Check.js';
 import Sidebar from './Component/Sidebar.js';
 import './Styles/Sidebar.css';
-import axios from 'axios';
+// import axios from 'axios';
 class App extends Component 
 {
     state=
     {
       Users:[],
+      User:{},
+      isLoaded:false
     };
 
-  fetchBooks=()=> 
+  getUsers=async()=> 
   {
-    fetch('/users')
+    await fetch('/api/users')
     .then(res=>
       {
         if(res.ok)
@@ -23,26 +25,35 @@ class App extends Component
     .then(data=>
       {
         this.setState({Users:data});
-        console.log(this.state);    
+        for(var i=0;i<this.state.Users.length;i++)
+        {
+          if(this.state.Users[i].email==="dinesh372003@gmail.com")
+          {
+            this.setState({User:this.state.Users[i]})
+            this.setState({isLoaded:true})
+          }
+        }
       })
   }
 
   componentDidMount() 
   {
-    this.fetchBooks(this);
+    this.getUsers(this);
   }
     
   render()
   {  
-
-  return <div> 
-
-      <Sidebar />
-      {/* {Users.map(book => (
-        <li key={book.id}>{book.name}</li>  
-       ))} */}
+if(this.state.isLoaded)
+{  return <div> 
+      <Sidebar Users={this.state.User} />
     </div>
-}}
+}
+else
+{
+  return <div>
+    Loading...
+  </div>
+}}}
 export default App;
 
 //state
