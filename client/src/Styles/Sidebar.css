@@ -30,6 +30,10 @@
   border-right: 0.05px solid rgb(168, 168, 168); */
   border-radius: 2px;
 }
+.Accordion:hover
+{
+  color:#6D63FF;
+}
 .InsideAcc
 {
   padding: 0 18px;
