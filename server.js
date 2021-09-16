@@ -4,7 +4,7 @@ const mongoose=require('mongoose');
 const bodyParser=require('body-parser');
 require("dotenv").config();
 const{PORT,MONGODB_USERNAME,MONGODB_PASSWORD}=process.env;
-const User=require('./Schema/userschema');
+const User=require('./schema/userschema');
 app.use(bodyParser.json());
 const path = require('path');
 const database="mongodb+srv://"+MONGODB_USERNAME+":"+MONGODB_PASSWORD+"@school.0eq55.mongodb.net/Project?retryWrites=true&w=majority";

@@ -4,7 +4,6 @@ import '../Styles/Sidebar.css';
 import Accordion from './Accordion';
 function Sidebar (props)
 {
-  console.log(props.Users);
 // useEffect(
 //   console.log(props.Users),[]
 // )
@@ -70,10 +69,13 @@ Closing
 Link to Dashboard
 
 */}
+
 <Accordion  
     title={"Classes"}
     icon={"bi bi-collection-fill"}
     contents={props.Users.classname}
+    isLoaded={props.isLoaded}
+    active={"active"}
 />
 
 {/* {accordion.map(acc=>(
@@ -85,11 +87,13 @@ List of Classes
 
 */}
 
-{/* <Accordion 
-  title="Classes"
-  icon="bi bi-collection-fill"
-  contents="Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat abcdefghijklmnopqrstuvqxyz"
-/> */}
+<Accordion 
+  title={"Assignment"}
+  icon={"bi bi-collection-fill"}
+  contents={"Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat abcdefghijklmnopqrstuvqxyz"}
+  isLoaded={false}
+  active={""}
+/>
 
 {/* 
 

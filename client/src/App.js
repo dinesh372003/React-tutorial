@@ -12,9 +12,9 @@ class App extends Component
       isLoaded:false
     };
 
-  getUsers=async()=> 
+  getUsers=()=> 
   {
-    await fetch('/api/users')
+    fetch('/api/users')
     .then(res=>
       {
         if(res.ok)
@@ -43,21 +43,18 @@ class App extends Component
     
   render()
   {  
-if(this.state.isLoaded)
-{  return <div> 
-      <Sidebar Users={this.state.User} />
-    </div>
-}
-else
-{
-  return <div>
-    Loading...
-  </div>
-}
-}}
+   return(
+      <div>
+      <Sidebar Users={this.state.User} isLoaded={this.state.isLoaded} />
+      </div >
+      )
+ 
+ }}
 export default App;
 
 //state
 //redux
 //road side coder
 //git lens
+//next js
+//spread operator
