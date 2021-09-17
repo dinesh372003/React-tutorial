@@ -2,6 +2,7 @@ import React,{Component} from 'react';
 // import Check from './Component/Check.js';
 import Sidebar from './Component/Sidebar.js';
 import './Styles/Sidebar.css';
+import Navbar from'./Component/Navbar.js';
 // import axios from 'axios';
 class App extends Component 
 {
@@ -39,13 +40,26 @@ class App extends Component
   componentDidMount() 
   {
     this.getUsers(this);
-  }
-    
+  } 
+  
+   
   render()
-  {  
+  {
+  var contentstyle=
+  {
+    display:"inline-block",
+    width:"calc(100%-17rem)",
+    marginLeft:"17rem",
+    marginTop:"0",
+    height:"100%",
+  }    
    return(
       <div>
-      <Sidebar Users={this.state.User} isLoaded={this.state.isLoaded} />
+        <Sidebar Users={this.state.User} isLoaded={this.state.isLoaded} />
+        
+        <div className="contents" style={contentstyle}>
+            <Navbar isLoaded={this.state.isLoaded}/>
+        </div>
       </div >
       )
  
