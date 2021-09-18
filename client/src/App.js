@@ -11,7 +11,7 @@ class App extends Component
       User:{},
       isLoaded:false
     };
-
+//Fetching Users data
   getUsers=()=> 
   {
     fetch('/api/users')
@@ -25,6 +25,7 @@ class App extends Component
     .then(data=>
       {
         this.setState({Users:data});
+        // Checking for user data and storing it seperately
         for(var i=0;i<this.state.Users.length;i++)
         {
           if(this.state.Users[i].email==="dinesh372003@gmail.com")
@@ -38,12 +39,15 @@ class App extends Component
 
   componentDidMount() 
   {
+    //Calling the fetch function
     this.getUsers(this);
   } 
   
    
   render()
   {
+    //Style for the content
+    // Since it might get changed it is done here
   var contentstyle=
   {
     display:"inline-block",
@@ -51,6 +55,7 @@ class App extends Component
     width:"calc(100%-17rem)",
     left:"17rem",
     top:"0",
+    overflowY:"auto",
     right:"0",
     height:"100%",
   }    
@@ -60,7 +65,7 @@ class App extends Component
         
         <div className="contents" style={contentstyle}>
             <Navbar isLoaded={this.state.isLoaded}/>
-            <ClassList isLoaded={this.state.isLoaded}/>
+            <ClassList isLoaded={this.state.isLoaded} User={this.state.User}/>
         </div>
       </div >
       )

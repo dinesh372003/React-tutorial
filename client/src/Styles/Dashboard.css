@@ -1,0 +1,36 @@
+.wrapper
+{
+  font-size: 25px;
+  text-align: center;
+  margin-left:10%;
+  margin-right:10%;
+  display: grid;
+  grid-template-columns:repeat(auto-fill,minmax(200px,1fr));
+  grid-column-gap:3em;
+  grid-row-gap: 1em;
+  min-height: 50px;
+  justify-content: center;
+  align-items: center;
+}
+.grids
+{
+  place-items: center;
+  justify-content: center;
+  word-break: break-word;
+  -webkit-hyphens: auto;
+  -moz-hyphens: auto;
+       hyphens: auto;
+  /* vertical-align: middle; */
+}
+.wrapper>div
+{
+
+  background:#dfe775;
+  width: 100%;
+  min-height: 200px;
+  display: inline-flex;
+  vertical-align: middle;
+  border-radius: 15px;
+  text-decoration: none;
+  grid-area: auto;
+}
