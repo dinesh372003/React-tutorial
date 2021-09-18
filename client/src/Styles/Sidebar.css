@@ -1,8 +1,18 @@
-
 .jk
 {
   text-decoration: none;
   color: black;
+}
+.namehead
+{
+  vertical-align: middle;
+  min-height: 75px;
+}
+.namebody
+{
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .jk:hover
 {
@@ -13,17 +23,14 @@
 .Accordion
 {
   border:0;
-
-  /* border-top:0.05px solid rgb(168, 168, 168);
-  border-bottom:0.05px solid rgb(168, 168, 168) ;
-  border-left: 0.05px solid rgb(168, 168, 168);
-  border-right: 0.05px solid rgb(168, 168, 168); */
   border-radius: 2px;
 }
+
 .Accordion:hover
 {
   color:#6D63FF;
 }
+
 .InsideAcc
 {
   padding: 0 18px;
@@ -32,7 +39,8 @@
   transition:0.4s ease;
 }
 
-.accordion__icon {
+.accordion__icon 
+{
   margin-left: auto;
   transition: transform 0.6s ease;
 }
@@ -41,8 +49,6 @@
 {
   transform:rotate(180deg);
 }
-
-
 
 #sidebar
 {
@@ -64,10 +70,17 @@
 
 .logout
 {
-  margin-left:15px;
-  margin-top:50px;
-  padding: 2px;
+  color:white;
 }
+.logout:hover
+{
+  color:black;
+}
+.navbar
+{
+  min-height:75px;
+}
+/* 
 .Navbar
 {
   position: fixed;
@@ -75,7 +88,7 @@
   right: 0;
   left:17rem;
   align-items: center;
-  display: flex;
+  display: inline-flex;
   font-size: 30px;
   text-align: center;
   padding-left: 2vw;
@@ -84,9 +97,45 @@
   transition: 0.4s;
 }
 
+.navbar
+{
+  min-height: 15px;
+  font-size: 30px;
+  transition:0.4s;
+}
+ */
 
+.flex-item-button 
+{
+    flex:10%;
+    padding-left: 0;
+    padding-right: 0;
+    text-align: center;
+    background-color: rgb(236, 255, 205);
+    height:50%;
+}
+
+.flex-item-middle
+{
+  flex:75%;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+}
+
+.flex-item-end
+{
+  flex: 15%;
+  color:white;
+  text-align: end;
+}
+.flex-item-end:hover
+{
+  color: black;
+}
 
 /* Short styles */
+
 .w-100
 {
   width:100%;
@@ -102,10 +151,6 @@
 .fw-bold
 {
   font-weight: 1000;
-}
-.fw-bol
-{
-  font-weight: 2000;
 }
 .ws
 {

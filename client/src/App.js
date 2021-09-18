@@ -1,9 +1,8 @@
 import React,{Component} from 'react';
-// import Check from './Component/Check.js';
 import Sidebar from './Component/Sidebar.js';
 import './Styles/Sidebar.css';
 import Navbar from'./Component/Navbar.js';
-// import axios from 'axios';
+import ClassList from './Component/ClassList.js';
 class App extends Component 
 {
     state=
@@ -48,9 +47,11 @@ class App extends Component
   var contentstyle=
   {
     display:"inline-block",
+    position:"fixed",
     width:"calc(100%-17rem)",
-    marginLeft:"17rem",
-    marginTop:"0",
+    left:"17rem",
+    top:"0",
+    right:"0",
     height:"100%",
   }    
    return(
@@ -59,6 +60,7 @@ class App extends Component
         
         <div className="contents" style={contentstyle}>
             <Navbar isLoaded={this.state.isLoaded}/>
+            <ClassList isLoaded={this.state.isLoaded}/>
         </div>
       </div >
       )

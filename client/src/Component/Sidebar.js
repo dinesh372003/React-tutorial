@@ -12,10 +12,10 @@ return (
 User Name
 
 */}
-    <div style={{minHeight: "15vh",transition:"0.4s"}} className="w-100 py-4 px-3 mb-4 ms-0 mb-0 bg-dark">
+    <div style={{minHeight: "15vh",transition:"0.4s"}} className="w-100 namehead py-4 px-3 mb-4 ms-0 mb-0 bg-dark">
           <div className="media ">
               <div className="media-body">
-                  <h2 className="m-0 name"style={{color: "Orange"}} ><strong>
+                  <h2 className="m-0 namebody"style={{color: "Orange"}} ><strong>
                     {props.isLoaded?
                       <div>Hi {props.Users.fname}</div>:
                       <div>Loading...</div>}
@@ -109,8 +109,15 @@ List of Timetable
 Closing List of Timetable
 
 */}
+<div className="fs-2 fw-bold px-2 py-2 mb-3 bg-light w-100">
+  <a href="/users/logout" className="jk">
+    <i className="bi bi-box-arrow-in-right fa-lg"></i>
+    <div className="px-2 d-inline-block">
+      Logout
+    </div>
+  </a>
+</div>
 
-<a href="/users/logout" className="jk fs-1 fw-bold logout"><i className="bi bi-box-arrow-in-right fa-lg"></i> Logout</a>
 
 <div className="m-3"></div>
 
