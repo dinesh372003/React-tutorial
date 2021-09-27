@@ -1,4 +1,5 @@
 import React,{useState,useRef,useEffect } from 'react'
+import { Link } from 'react-router-dom';
 import '../Styles/Sidebar.css';
 function Accordion (props)
 {
@@ -49,13 +50,17 @@ return (
 
 <div className="InsideAcc" ref={content} style={{maxHeight:`${Height}`}}>
     {props.isLoaded?
-        <div >
+        <div>
+        {/* <Router> */}
         {(props.contents).map(content=>(
-            <li key={content}>
-                {content}
+            <li key={content._id}>
+                <Link className="text-dec-none" to={`/${content._id}`}>
+                    {content.classname}
+                </Link>
                 <hr className="m-2"/>
             </li>
         ))}
+        {/* </Router> */}
         </div>
     :<div>Loading...</div>}
 </div>

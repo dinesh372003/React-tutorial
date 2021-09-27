@@ -1,16 +1,15 @@
 import React from 'react'
 import '../Styles/Sidebar.css'
 import {Nav,Container,Navbar} from 'react-bootstrap'
-function navbar()
+function navbar(props)
 {
 return (
 <>
-  <Navbar bg="primary" style={{minHeight:"15vh",transition:"0.4s",padding:"13px"}} className="w-100 px-3 mb-4 ms-0 mb-0 navbar" variant="dark">
-    <Container>
-{/* 
-    toggle button for the sidebar at the start of the Navbar
-    So do not worry we will make this functional within few days once after the styling is completed
-    So as said our main concentration for now is to focus on the styling and slowly learn react */}
+{props.inDashboard?
+  <div>
+  <Navbar bg="primary" style={{minHeight:"15vh",transition:"0.4s",padding:"13px",marginBottom:"0px"}} className="w-100 px-3 navbar" variant="dark">
+  <Container>
+
     <button id="sidebarCollapse" type="button" className="btn flex-item-button">
         <i className="fa fa-bars mr-2 a"></i>
     </button>
@@ -20,15 +19,42 @@ return (
         School
     </Navbar.Brand>
 
-{/* Logout Link in the end of the navbar */}
+    {/* Logout Link in the end of the navbar */}
     <a className="flex-item-end" href="/users/logout">
         <i className="bi bi-box-arrow-in-right fa-lg"></i>
         <div className="m-2 fs-1 d-inline-block">
           Logout
         </div>
     </a>
+
   </Container>
 </Navbar>
+</div>
+
+//
+
+:
+
+//
+
+<div>
+<Navbar bg="primary" style={{minHeight:"15vh",transition:"0.4s",padding:"13px",marginBottom:"0px"}} className="w-100 px-3 navbar" variant="dark">
+  <Container>
+
+    <button id="sidebarCollapse" type="button" className="btn m-1 flex-item-button">
+        <i className="fa fa-bars mr-2 a"></i>
+    </button>
+    <div className="btn m-1 fs-0 fw-bold flex-25">Post</div>
+    <div className="btn m-1 fs-0 fw-bold flex-25">Assignment</div>
+    <div className="btn m-1 fs-0 fw-bold flex-25">Timetable</div>
+    <div className="btn m-1 fs-0 fw-bold flex-25">People</div>
+  
+
+
+  </Container>
+</Navbar>
+</div>
+}
 </>
     // <div style={{minHeight: "15vh"}} className="Navbar w-100 py-4 px-3 mb-4 ms-0 mb-0 ">
     // </div>

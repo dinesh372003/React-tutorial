@@ -110,9 +110,8 @@
     flex:10%;
     padding-left: 0;
     padding-right: 0;
-    text-align: center;
     background-color: rgb(236, 255, 205);
-    height:50%;
+    height:75%;
 }
 
 .flex-item-middle
@@ -134,11 +133,25 @@
   color: black;
 }
 
+.flex-25
+{
+  flex:22.5%;
+  color:white;
+}
+.flex-25:hover
+{
+  background-color: rgb(236, 255, 205);
+  color:black;
+}
 /* Short styles */
 
 .w-100
 {
   width:100%;
+}
+.fs-0
+{
+  font-size: 20px;
 }
 .fs-1
 {
@@ -156,7 +169,8 @@
 {
   word-spacing: 25px;
 }
-.text-dec-none
+.text-dec-none,.text-dec-none:hover
 {
   text-decoration: none;
+  color:black;
 }

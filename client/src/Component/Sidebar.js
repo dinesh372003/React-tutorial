@@ -1,4 +1,5 @@
 import React,{useEffect} from 'react';
+import { Link } from  'react-router-dom';
 import {Navbar} from 'react-bootstrap';
 import '../Styles/Sidebar.css';
 import Accordion from './Accordion';
@@ -12,7 +13,7 @@ return (
 User Name
 
 */}
-    <div style={{minHeight: "15vh",transition:"0.4s"}} className="w-100 namehead py-4 px-3 mb-4 ms-0 mb-0 bg-dark">
+    <div style={{minHeight: "15vh",transition:"0.4s"}} className="w-100 namehead py-4 px-3 mb-2 ms-0 mb-0 bg-dark">
           <div className="media ">
               <div className="media-body">
                   <h2 className="m-0 namebody"style={{color: "Orange"}} ><strong>
@@ -28,20 +29,22 @@ User Name
 Closing
 User Name
 
-*/}
+*/}   
 
 {/* 
 
 Link to Dashboard
 
 */}
-      <div className="fs-2 fw-bold py-2 px-3 mb-3 bg-light w-100">
-        <a href="/" className="jk">
+      <div className="fs-2 fw-bold py-2 px-3 mb-2 bg-light w-100">
+      {/* <Router>   */}
+        <Link to="/" className="jk">
           <i className="fas fa-home"></i>
           <div className="px-2 d-inline-block">
             Dashboard
-            </div>
-        </a>
+          </div>
+        </Link>
+      {/* </Router> */}
       </div>
 {/* 
 
@@ -59,7 +62,8 @@ List of Classes
 <Accordion  
     title={"Classes"}
     icon={"bi bi-collection-fill"}
-    contents={props.Users.classname}
+    user={props.Users}
+    contents={props.Classes}
     isLoaded={props.isLoaded}
 />
 
@@ -80,7 +84,8 @@ List of Assignment
 <Accordion 
   title={"Assignment"}
   icon={"fas fa-tasks mt-2"}
-  contents={props.Users.classname}
+  user={props.Users}
+  contents={props.Classes}
   isLoaded={props.isLoaded}
 />
 
@@ -100,7 +105,8 @@ List of Timetable
 <Accordion 
   title="Timetable"
   icon="bi bi-calendar-fill"
-  contents={props.Users.classname}
+  user={props.Users}
+  contents={props.Classes}
   isLoaded={props.isLoaded}
 />
 

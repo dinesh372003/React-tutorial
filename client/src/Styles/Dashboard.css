@@ -34,3 +34,34 @@
   text-decoration: none;
   grid-area: auto;
 }
+
+
+/* 
+
+Short Styles
+
+*/
+.w-100
+{
+  width:100%;
+}
+.fs-1
+{
+  font-size: 22.5px;
+}
+.fs-2
+{
+  font-size: 25px;
+}
+.fw-bold
+{
+  font-weight: 1000;
+}
+.ws
+{
+  word-spacing: 25px;
+}
+.text-dec-none
+{
+  text-decoration: none;
+}
