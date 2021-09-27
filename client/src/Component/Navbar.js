@@ -31,23 +31,23 @@ return (
 </Navbar>
 </div>
 
-//
+
 
 :
 
-//
+
 
 <div>
 <Navbar bg="primary" style={{minHeight:"15vh",transition:"0.4s",padding:"13px",marginBottom:"0px"}} className="w-100 px-3 navbar" variant="dark">
   <Container>
 
-    <button id="sidebarCollapse" type="button" className="btn m-1 flex-item-button">
+    <button id="sidebarCollapse" type="button" className="btn flex-item-button">
         <i className="fa fa-bars mr-2 a"></i>
     </button>
-    <div className="btn m-1 fs-0 fw-bold flex-25">Post</div>
-    <div className="btn m-1 fs-0 fw-bold flex-25">Assignment</div>
-    <div className="btn m-1 fs-0 fw-bold flex-25">Timetable</div>
-    <div className="btn m-1 fs-0 fw-bold flex-25">People</div>
+    <button onClick={props.change} className="btn m-1 fs-0 fw-bold flex-25">Post</button>
+    <button onClick={props.change} className="btn m-1 fs-0 fw-bold flex-25">Assignment</button>
+    <button onClick={props.change} className="btn m-1 fs-0 fw-bold flex-25">Timetable</button>
+    <button onClick={props.change} className="btn m-1 fs-0 fw-bold flex-25">People</button>
   
 
 

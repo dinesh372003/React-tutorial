@@ -4,6 +4,7 @@ import './Styles/Sidebar.css';
 import Navbar from'./Component/Navbar.js';
 import ClassList from './Component/ClassList.js';
 import Classdetails from './Component/Classdetails.js';
+import ClassContent from './Component/ClassContent.js';
 import { 
     BrowserRouter as Router, 
     Route,
@@ -116,12 +117,10 @@ class App extends Component
                         />
                     </Route>
                     <Route path="/:id">
-                        <Navbar 
-                            isLoaded={this.state.isLoaded}
-                        />
-                        <Classdetails 
-                            Classes={this.state.Class} 
-                            Users={this.state.User}
+                        <ClassContent 
+                            isloaded={this.state.isloaded}
+                            Classes={this.state.Class}
+                            Users={this.state.User}    
                         />
                     </Route>
                 </Switch>
