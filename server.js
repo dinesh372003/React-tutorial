@@ -12,21 +12,66 @@ const path = require('path');
 const database="mongodb+srv://"+MONGODB_USERNAME+":"+MONGODB_PASSWORD+"@school.0eq55.mongodb.net/Project?retryWrites=true&w=majority";
 var data;
 
+const randomcode=(datas)=>
+{
+    var doesalreadyexists=false;
+    const letters = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z","1","2","3","4","5","6","7","8","9"]            
+    var code = "";
+    for (var i=0;i<6;i++)
+    {
+        code+=letters[Math.floor(Math.random()*letters.length)];
+    }
+    Class.find()
+    .then((result)=>
+    {
+        result.forEach(classes=>
+            {
+                if(classes.classcode==code)
+                {
+                    doesalreadyexists=true;
+                }
+            })
+            if(doesalreadyexists==false)
+            {
+                storeclass(code,datas);
+            }
+            else
+            {
+                randomcode(datas);
+            }
+        })
+        .catch(err=>console.log(err));   
+}
+
+
+const storeclass=(code,datas)=>
+{
+    const classes = new Class();
+    classes.classcode=code;
+    classes.classname=datas.teamname;
+    classes.mainteacher=datas.teacher;
+    classes.subteacher=datas.teacher;
+    classes.save()
+    .then((result)=>
+    {
+        User.findOneAndUpdate(
+            {
+                _id:datas.userid,
+            },
+            {
+                $push:
+                {
+                    classes:result.id,
+                    classname:datas.teamname,
+                },
+            })    
+            .then(result=>{})
+            .catch(err=>console.log(err));  
+    })
+    .catch(err=>console.log(err));
+}
+
 app.use(cors());
-// app.use(function (request, res, next) {
-//             res.setHeader("Access-Control-Allow-Origin", "https://localhost:3000");
-//     res.header('Access-Control-Allow-Origin', '*');
-//     res.header('Access-Control-Allow-Headers', '*');
-    //intercept the OPTIONS call so we don't double up on calls to the integration
-    // app.use((req, res, next) => {
-    //     res.setHeader("Access-Control-Allow-Origin", "https://localhost:3000");
-    //     res.header(
-    //       "Access-Control-Allow-Headers",
-    //       "Origin, X-Requested-With, Content-Type, Accept"
-    //     );
-        // next();
-    //   }); 
-    //  });
 app.listen(PORT);
 console.log("Listening on port "+PORT);
 //Connect mongoDB
@@ -58,30 +103,8 @@ app.get("/api/classes",(req,res)=>
 })
 app.post("/api/classes",(req,res)=>
 {
-    const classes = new Class();
-    classes.classname=req.body.teamname;
-    classes.mainteacher=req.body.teacher;
-    classes.subteacher=req.body.teacher;
-    classes.save()
-    .then((result)=>
-    {
-        console.log(req.body.userid);
-        console.log(result.id);
-        User.findOneAndUpdate(
-            {
-                _id:req.body.userid,
-            },
-            {
-                $push:
-                {
-                    classes:result.id,
-                    classname:req.body.teamname,
-                },
-            })    
-            .then(result=>console.log(result))
-            .catch(err=>console.log(err));  
-    })
-    .catch(err=>console.log(err));
+    datas=req.body;
+    randomcode(datas);
 })
 // app.use(express.static(path.join(__dirname, '/client/build')));
 // app.get('/', function (req,res) 

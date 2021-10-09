@@ -51,21 +51,28 @@ class App extends Component
         })
       .then(datas=>
         {
-          // Checking for user data and storing it seperately
-          for(var i=0;i<this.state.User.classes.length;i++)
+          if(this.state.User.classes.length>0)
+          {          
+              // Checking for user data and storing it seperately
+              for(var i=0;i<this.state.User.classes.length;i++)
+              {
+                  for(var j=0;j<datas.length;j++)
+                  {
+                    if(datas[j]._id===this.state.User.classes[i])
+                    {
+                      this.setState({ Class:[...this.state.Class,datas[j]]})
+                    }
+                  }
+                  if(i===this.state.User.classes.length-1)
+                  {
+                    this.setState({isLoaded:true});
+                  }
+              }
+          }  
+          else
           {
-              for(var j=0;j<datas.length;j++)
-              {
-                if(datas[j]._id===this.state.User.classes[i])
-                {
-                  this.setState({ Class:[...this.state.Class,datas[j]]})
-                }
-              }
-              if(i===this.state.User.classes.length-1)
-              {
-                this.setState({isLoaded:true});
-              }
-          }
+            this.setState({Class:[],isLoaded:true})
+          }      
         })
       })
   }

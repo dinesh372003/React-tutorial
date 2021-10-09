@@ -48,6 +48,10 @@ Short Styles
 {
   width:100%;
 }
+.fs-0
+{
+  font-size: 20px;
+}
 .fs-1
 {
   font-size: 22.5px;

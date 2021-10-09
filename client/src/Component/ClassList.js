@@ -26,7 +26,7 @@ const submit=(e)=>
     .then(()=>{})
     .catch((err)=>console.log(err));
     changestate("false");
-    window.location.reload();       
+    window.location.reload();
 }
 
 const render=()=>
@@ -52,16 +52,20 @@ else if(state=="Create")
 {
     return <div>Create
         <Form>
-        <Form.Control type="text" id="Create" placeholder="Team Name" onChange={valueChange} value={value}/>
-        <Button type="submit" onClick={submit} variant="light">Create</Button> 
+            <Form.Control type="text" id="Create" placeholder="Team Name" onChange={valueChange} value={value}/>
+            <Button type="submit" onClick={submit} variant="light">Create</Button> 
         </Form>
+        <div className="fs-0 pointer" onClick={()=>{changestate("Join")}}>Join</div>
     </div>
 }
 else if(state=="Join")
 {
     return <div>Join
-        <Form.Control type="text" id="Join" placeholder="Team Code" />
-        <Button variant="light">Join</Button> 
+        <Form>
+            <Form.Control type="text" id="Join" placeholder="Team Code" />
+            <Button variant="light">Join</Button> 
+        </Form>
+        <div className="fs-0 pointer" onClick={()=>{changestate("Create")}}>Create</div>
     </div>
 }
 }

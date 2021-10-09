@@ -7,6 +7,11 @@ const classSchema=new Schema(
         type:String,
         required:true,
     },
+    classcode:
+    {
+        type:String,
+        required:true,
+    },
     mainteacher:
     {
         type:String,
