@@ -9,9 +9,9 @@ const Class = props.Classes;
 const Users = props.Users;
 const [place,setPlace] = useState("POST");
 
-const Change=()=>
+const Change=(evt)=>
 {
-    setPlace("TIMETABLE");
+    setPlace(evt.target.id);
 }
 
 return (

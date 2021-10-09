@@ -35,7 +35,10 @@
   grid-area: auto;
 }
 
-
+.pointer:hover
+{
+  cursor : pointer;
+}
 /* 
 
 Short Styles
@@ -64,4 +67,10 @@ Short Styles
 .text-dec-none
 {
   text-decoration: none;
+  color:black;
+}
+.text-dec-none:hover
+{
+  text-decoration: none;
+  color:black;
 }

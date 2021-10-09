@@ -1,4 +1,4 @@
-import React,{Component} from 'react';
+import React , { Component } from 'react';
 import Sidebar from './Component/Sidebar.js';
 import './Styles/Sidebar.css';
 import Navbar from'./Component/Navbar.js';
@@ -40,8 +40,6 @@ class App extends Component
             this.setState({User:data[i]})
           }
         }
-      })
-
       //Fetching Class datas
       fetch('/api/classes')
       .then(res=>
@@ -69,13 +67,14 @@ class App extends Component
               }
           }
         })
+      })
   }
-
-  componentDidMount() 
-  {
-    //Calling the fetch function
-    this.getdatas(this);
-  } 
+    
+componentDidMount() 
+{
+  //Calling the fetch function
+  this.getdatas(this);
+} 
   
    
   render()
@@ -93,6 +92,7 @@ class App extends Component
     right:"0",
     height:"100%",
   }    
+
    return(
      <div>
         <Router>
@@ -118,7 +118,7 @@ class App extends Component
                     </Route>
                     <Route path="/:id">
                         <ClassContent 
-                            isloaded={this.state.isloaded}
+                            isloaded={this.state.isLoaded}
                             Classes={this.state.Class}
                             Users={this.state.User}    
                         />

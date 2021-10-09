@@ -44,10 +44,10 @@ return (
     <button id="sidebarCollapse" type="button" className="btn flex-item-button">
         <i className="fa fa-bars mr-2 a"></i>
     </button>
-    <button onClick={props.change} className="btn m-1 fs-0 fw-bold flex-25">Post</button>
-    <button onClick={props.change} className="btn m-1 fs-0 fw-bold flex-25">Assignment</button>
-    <button onClick={props.change} className="btn m-1 fs-0 fw-bold flex-25">Timetable</button>
-    <button onClick={props.change} className="btn m-1 fs-0 fw-bold flex-25">People</button>
+    <button onClick={props.change} id="POST" className="btn m-1 fs-0 fw-bold flex-25">Post</button>
+    <button onClick={props.change} id="ASSIGNMENT" className="btn m-1 fs-0 fw-bold flex-25">Assignment</button>
+    <button onClick={props.change} id="TIMETABLE" className="btn m-1 fs-0 fw-bold flex-25">Timetable</button>
+    <button onClick={props.change} id="PEOPLE" className="btn m-1 fs-0 fw-bold flex-25">People</button>
   
 
 

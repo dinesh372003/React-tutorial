@@ -23,7 +23,7 @@ if(props.place=="POST")
 {
 return (
     <div>
-        <div style={{marginLeft:"10px",marginTop:"5px"}} className="fs-2 fw-bold">
+        <div style={{marginLeft:"10px", marginTop:"5px"}} className="fs-2 fw-bold">
             {Classs.classname}
             <br />
             In POST
@@ -51,9 +51,9 @@ else if(props.place=="ASSIGNMENT")
         <div>
             <div style={{marginLeft:"10px",marginTop:"5px"}} className="fs-2 fw-bold">
                 {Classs.classname}
+                <br />
+                In ASSIGNMENT
             </div>
-            <br />
-            In ASSIGNMENT
         </div>
     )
 }
@@ -64,9 +64,9 @@ else if(props.place=="PEOPLE")
         <div>
             <div style={{marginLeft:"10px",marginTop:"5px"}} className="fs-2 fw-bold">
                 {Classs.classname}
+                <br />
+                In PEOPLE
             </div>
-            <br />
-            In PEOPLE
         </div>
     )
 }
