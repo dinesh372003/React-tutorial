@@ -101,10 +101,69 @@ app.get("/api/classes",(req,res)=>
         })
     .catch(err=>console.log(err));
 })
-app.post("/api/classes",(req,res)=>
+app.post("/api/classes/create",(req,res)=>
 {
-    datas=req.body;
+    var datas=req.body;
     randomcode(datas);
+})
+app.post("/api/classes/join",(req,res)=>
+{
+    var datas=req.body;
+    var flag=0;
+    Class.find()
+    .then((result)=>
+        {
+            result.forEach(classes=>
+                {
+                    if(classes.classcode==datas.teamcode)
+                    {
+                        User.findById(datas.userid)
+                        .then((result)=>
+                            {
+                                result.classes.forEach(classid=>
+                                    {
+                                        if(classid==classes.classname)
+                                        {
+                                            flag=1;
+                                            console.log(flag);
+                                        }        
+                                    })
+                                updateclass(flag,classes._id,classes.classname);
+                            })
+                        .catch(err=>console.log(err));
+                    }
+                })
+        })
+    .catch(err=>console.log(err));
+const updateclass=(flags,id,name)=>
+{
+    if(flags=1)
+    {
+        Class.findOneAndUpdate(
+        {
+            _id:id,
+        },
+        {
+            $push:
+            {
+                students:datas.student,
+            },
+        })    
+        .then(result=>{
+            User.findByIdAndUpdate(datas.userid,
+                {
+                    $push:
+                    {
+                        classes:id,
+                        classname:name,
+                    },
+                })
+                .then(result=>{})
+                .catch(err=>console.log(err));
+        })
+        .catch(err=>console.log(err));  
+    }
+}
 })
 // app.use(express.static(path.join(__dirname, '/client/build')));
 // app.get('/', function (req,res) 

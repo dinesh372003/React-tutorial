@@ -20,13 +20,24 @@ const changestate=(a)=>
 
 const submit=(e)=>
 {
-    const data={"teamname":value,teacher:props.Users.email,userid:props.Users._id};
-    // e.preventDefault();
-    axios.post("http://localhost:5000/api/classes",data)
-    .then(()=>{})
-    .catch((err)=>console.log(err));
-    changestate("false");
-    window.location.reload();
+    if(state==="Create")
+    {    
+        const data={"teamname":value,teacher:props.Users.email,userid:props.Users._id};
+        axios.post("http://localhost:5000/api/classes/create",data)
+        .then(()=>{})
+        .catch((err)=>console.log(err));
+        changestate("false");
+        window.location.reload();
+    }
+    else if(state==="Join")
+    {
+        const data={"teamcode":value,student:props.Users.email,userid:props.Users._id};
+        axios.post("http://localhost:5000/api/classes/join",data)
+        .then(()=>{})
+        .catch((err)=>console.log(err));
+        changestate("false");
+        window.location.reload();  
+    }
 }
 
 const render=()=>
@@ -62,8 +73,8 @@ else if(state=="Join")
 {
     return <div>Join
         <Form>
-            <Form.Control type="text" id="Join" placeholder="Team Code" />
-            <Button variant="light">Join</Button> 
+            <Form.Control type="text" id="Join" placeholder="Team Code" onChange={valueChange} value={value}/>
+            <Button type="submit" onClick={submit} variant="light">Join</Button> 
         </Form>
         <div className="fs-0 pointer" onClick={()=>{changestate("Create")}}>Create</div>
     </div>
