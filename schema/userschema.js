@@ -29,6 +29,14 @@ const usersSchema=new Schema(
     {
         type:[String],
     },
+    teacher:
+    {
+        type:[String],
+    },
+    student:
+    {
+        type:[String],
+    }
 },{timestamps:true});
 const user=mongoose.model("User",usersSchema);
 module.exports=user;

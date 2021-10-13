@@ -63,6 +63,7 @@ const storeclass=(code,datas)=>
                 {
                     classes:result.id,
                     classname:datas.teamname,
+                    teacher:result.id,
                 },
             })    
             .then(result=>{})
@@ -118,51 +119,53 @@ app.post("/api/classes/join",(req,res)=>
                     if(classes.classcode==datas.teamcode)
                     {
                         User.findById(datas.userid)
-                        .then((result)=>
+                        .then((resul)=>
                             {
-                                result.classes.forEach(classid=>
+                                resul.classes.forEach(classid=>
                                     {
-                                        if(classid==classes.classname)
+                                        if(classid==classes._id)
                                         {
                                             flag=1;
-                                            console.log(flag);
+                                            console.log("This should come first");
                                         }        
                                     })
-                                updateclass(flag,classes._id,classes.classname);
-                            })
+                                if(flag==0)
+                                { 
+                                    console.log("This should come second")                               
+                                    updateclass(classes._id,classes.classname);
+                                }                            
+                                })
                         .catch(err=>console.log(err));
                     }
                 })
         })
     .catch(err=>console.log(err));
-const updateclass=(flags,id,name)=>
+const updateclass=(id,name)=>
 {
-    if(flags=1)
+    Class.findOneAndUpdate(
     {
-        Class.findOneAndUpdate(
+        _id:id,
+    },
+    {
+        $push:
         {
-            _id:id,
+            students:datas.student,
         },
-        {
-            $push:
+    })    
+    .then(result=>{
+        User.findByIdAndUpdate(datas.userid,
             {
-                students:datas.student,
-            },
-        })    
-        .then(result=>{
-            User.findByIdAndUpdate(datas.userid,
+                $push:
                 {
-                    $push:
-                    {
-                        classes:id,
-                        classname:name,
-                    },
-                })
-                .then(result=>{})
-                .catch(err=>console.log(err));
-        })
-        .catch(err=>console.log(err));  
-    }
+                    classes:id,
+                    classname:name,
+                    student:id,
+                },
+            })
+            .then(result=>{})
+            .catch(err=>console.log(err));
+    })
+    .catch(err=>console.log(err));  
 }
 })
 // app.use(express.static(path.join(__dirname, '/client/build')));

@@ -35,7 +35,7 @@ class App extends Component
         // Checking for user data and storing it seperately
         for(var i=0;i<data.length;i++)
         {
-          if(data[i].email==="abcd@abcd")
+          if(data[i].email==="dinesh372003@gmail.com")
           {
             this.setState({User:data[i]})
           }
