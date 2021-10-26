@@ -2,17 +2,21 @@ import React,{ useEffect , useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { OverlayTrigger , Tooltip , Button } from 'react-bootstrap';
 import '../Styles/Dashboard.css';
-function Classdetails(props) {
+function Classdetails(props) 
+{
 const { id } = useParams()
-const Classes =props.Classes;
+var ownerstatus;
+const Classes = props.Classes;
 const [Classs,setClasss] = useState({});
 const [Copy,setCopy] = useState("Click to Copy");
 const Users = props.Users;
-const changecopy=()=>
+
+const changecopy = ()=>
 {
     navigator.clipboard.writeText(`${Classs.classcode}`);
     setCopy("Copied!")
 }
+
 useEffect(()=>
 {
     for(var i=0;i<Classes.length;i++)
@@ -20,6 +24,31 @@ useEffect(()=>
         if(id===Classes[i]._id)
         {
             setClasss(Classes[i]);
+
+            Classes[i].subteacher.forEach(teacher => 
+                {
+                    if(teacher.email==Users.email)    
+                    {
+                        ownerstatus="subteacher";
+                    }
+                });
+    
+            Classes[i].mainteacher.forEach(teacher =>
+                {
+                    if(teacher.email==Users.email)
+                    {
+                        ownerstatus="mainteacher";
+                    }
+                })
+
+            Classes[i].students.forEach(students => 
+            {
+                if(students.email==Users.email)    
+                {
+                    ownerstatus="student";
+                }
+            });
+            console.log(ownerstatus);
         }
     }     
 })
@@ -65,6 +94,34 @@ return(
 </div>
 )
 }
+
+const list = (content)=>
+{
+    if(content.length==0)
+    {
+        return(
+            <div className="d-inline-block">
+
+            </div>
+            )
+    }
+    else
+    {
+        return(
+            <div className="d-inline-block">
+                {content.map(things=>
+                    (
+                        <li key={things.email}>
+                            {things.name} - {things.email}
+                        </li>
+                    ))
+                }
+            </div>
+        )
+    }
+}
+
+
 if(props.place=="POST")
 {
 return (
@@ -100,7 +157,38 @@ else if(props.place=="PEOPLE")
     return(
 <div style={{marginLeft:"10px", marginTop:"5px"}} className="fs-2 fw-bold">
     {top()}
-    In PEOPLE
+        <div className="content">
+            Teachers:
+                <br />
+            <div className="inside-1">
+                Main Teacher:
+            </div>
+            <div className="inside-2">
+                {
+                    list(Classs.mainteacher)
+                }
+            </div>
+                <br />
+            <div className="inside-1">
+                Subject Teachers:
+            </div>
+             <div className="inside-2">
+                {
+                    list(Classs.subteacher)
+                }
+            </div> 
+                <br />
+            <div className="inside-1">
+                Students:
+            </div>
+            <div className="inside-2">
+                {
+                    list(Classs.students)
+                }
+            </div>
+
+            <br />
+     </div>
 </div>
 )
 }

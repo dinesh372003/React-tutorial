@@ -22,7 +22,7 @@ const submit=(e)=>
 {
     if(state==="Create")
     {    
-        const data={"teamname":value,teacher:props.Users.email,userid:props.Users._id};
+        const data={"teamname":value,teacher:props.Users,userid:props.Users._id};
         axios.post("http://localhost:5000/api/classes/create",data)
         .then(()=>{})
         .catch((err)=>console.log(err));
@@ -31,7 +31,7 @@ const submit=(e)=>
     }
     else if(state==="Join")
     {
-        const data={"teamcode":value,student:props.Users.email,userid:props.Users._id};
+        const data={"teamcode":value,student:props.Users,userid:props.Users._id};
         axios.post("http://localhost:5000/api/classes/join",data)
         .then(()=>{})
         .catch((err)=>console.log(err));

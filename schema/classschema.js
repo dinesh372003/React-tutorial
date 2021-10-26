@@ -14,20 +14,20 @@ const classSchema=new Schema(
     },
     mainteacher:
     {
-        type:String,
+        type:[Object],
         required:true,
     },
     subteacher:
     {
-        type:[String],
+        type:[Object],
     },
     subjects:
     {
-        type:[String],
+        type:[Object],
     },
     students:
     {
-        type:[String],
+        type:[Object],
     },
 },{timestamps:true});
 const Class=mongoose.model("Class",classSchema);

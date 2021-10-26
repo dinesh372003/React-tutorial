@@ -49,8 +49,19 @@ const storeclass=(code,datas)=>
     const classes = new Class();
     classes.classcode=code;
     classes.classname=datas.teamname;
-    classes.mainteacher=datas.teacher;
-    classes.subteacher=datas.teacher;
+    classes.mainteacher=
+        {
+            "name":datas.teacher.fname,
+            "lname":datas.teacher.lname,
+            "email":datas.teacher.email,
+        };
+    classes.subteacher=
+        {
+            "name":datas.teacher.fname,
+            "lname":datas.teacher.lname,
+            "email":datas.teacher.email,
+        };
+    classes.students;
     classes.save()
     .then((result)=>
     {
@@ -149,7 +160,12 @@ const updateclass=(id,name)=>
     {
         $push:
         {
-            students:datas.student,
+            students:
+            {
+                "name":datas.student.fname,
+                "lname":datas.student.lname,
+                "email":datas.student.email,
+            },
         },
     })    
     .then(result=>{
