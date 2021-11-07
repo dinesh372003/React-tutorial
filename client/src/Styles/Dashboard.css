@@ -98,3 +98,7 @@ Short Styles
   text-decoration: none;
   color:black;
 }
+.ms-2
+{
+  margin-left: 20px;
+}

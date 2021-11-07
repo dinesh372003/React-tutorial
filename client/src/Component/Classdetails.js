@@ -1,14 +1,18 @@
 import React,{ useEffect , useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { OverlayTrigger , Tooltip , Button } from 'react-bootstrap';
+import { OverlayTrigger , Tooltip , Form , CloseButton } from 'react-bootstrap';
 import '../Styles/Dashboard.css';
+import Edit from './Edit'
+
 function Classdetails(props) 
 {
 const { id } = useParams()
 var ownerstatus;
 const Classes = props.Classes;
-const [Classs,setClasss] = useState({});
-const [Copy,setCopy] = useState("Click to Copy");
+const [ Classs , setClasss ] = useState({});
+const [ Ownerstatus , setOwner ] = useState("");
+const [ Copy , setCopy ] = useState("Click to Copy");
+const [ Change , setChange ] = useState( false );
 const Users = props.Users;
 
 const changecopy = ()=>
@@ -29,7 +33,7 @@ useEffect(()=>
                 {
                     if(teacher.email==Users.email)    
                     {
-                        ownerstatus="subteacher";
+                        setOwner("subteacher");
                     }
                 });
     
@@ -37,7 +41,7 @@ useEffect(()=>
                 {
                     if(teacher.email==Users.email)
                     {
-                        ownerstatus="mainteacher";
+                        setOwner("mainteacher");
                     }
                 })
 
@@ -45,10 +49,9 @@ useEffect(()=>
             {
                 if(students.email==Users.email)    
                 {
-                    ownerstatus="student";
+                    setOwner("student");
                 }
             });
-            console.log(ownerstatus);
         }
     }     
 })
@@ -95,8 +98,19 @@ return(
 )
 }
 
-const list = (content)=>
+const form = () =>
 {
+    console.log("abcd");
+    return(
+        <div>hello</div>
+    )
+}
+
+
+const list = (content,name)=>
+{
+
+
     if(content.length==0)
     {
         return(
@@ -112,10 +126,56 @@ const list = (content)=>
                 {content.map(things=>
                     (
                         <li key={things.email}>
-                            {things.name} - {things.email}
+                            {/* {things.name} - {things.email} */}
+
+                            <OverlayTrigger
+                                placement="right"
+                                varient="light"
+                                style={{bacgroundColor:"black"}}
+                                overlay={(props) => (
+                                    <Tooltip id="overlay-example" {...props}>
+                                      {things.email}
+                                    </Tooltip>
+                                    )
+                                }
+                                >
+                                <div className="fs-1 fw-bold pointer d-inline-block">
+                                    {things.name} 
+                                </div>
+                                </OverlayTrigger> 
+                                {name
+                                ?
+                                <Edit 
+                                    status={false} 
+                                    Ownerstatus={Ownerstatus}
+                                />
+                                :
+                                <div>
+                                </div>
+                                }
+
+
+
+
                         </li>
+
+
+
+
+
+
                     ))
                 }
+
+
+
+
+
+
+
+
+
+
             </div>
         )
     }
@@ -165,7 +225,7 @@ else if(props.place=="PEOPLE")
             </div>
             <div className="inside-2">
                 {
-                    list(Classs.mainteacher)
+                    list(Classs.mainteacher,false)
                 }
             </div>
                 <br />
@@ -174,7 +234,7 @@ else if(props.place=="PEOPLE")
             </div>
              <div className="inside-2">
                 {
-                    list(Classs.subteacher)
+                    list(Classs.subteacher,true)
                 }
             </div> 
                 <br />
@@ -183,7 +243,7 @@ else if(props.place=="PEOPLE")
             </div>
             <div className="inside-2">
                 {
-                    list(Classs.students)
+                    list(Classs.students,true)
                 }
             </div>
 
