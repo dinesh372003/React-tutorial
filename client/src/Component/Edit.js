@@ -10,10 +10,17 @@ function Edit(props) {
         setStatus(!Status);
     }
     
+    const valueset = (e) =>
+    {
+        setValue(e.target.value);
+    }
+
     const changerole = (e) =>
     {
         e.preventDefault();
-        console.log(e);
+        console.log(value);
+        // setValue(e.target.value);
+        // console.log(value,"123");
     }
 
     if(Ownerstatus=="mainteacher")
@@ -23,17 +30,25 @@ function Edit(props) {
                 {/* Hello    */}
                 {Status?
                 <div>
-                    <Form>
+                <Form onSubmit={changerole}>
+                <Form.Select aria-label="Default select example" value={value} onChange={valueset}>
+                    <option value="">Choose the Role</option>
+                    <option value="mainteacher">Main Teacher</option>
+                    <option value="subteacher">Subject Teacher</option>
+                    <option value="student">Student</option>
+                </Form.Select>
+                <button type="submit" className="ms-2">Change</button>
+                <i className="ms-2 bi bi-x-lg" onClick={changestatus}></i>
+                </Form>
+                    {/* <Form onSubmit={changerole}>
                         Change role to 
                         <Form.Select className="ms-2" aria-label="Default select example">
-                            <option>Open this select menu</option>
-                            <option value="mainteacher">Main Teacher</option>
-                            <option value="subteacher">Subject Teacher</option>
-                            <option value="">Student</option>
+                            <option onClick={()=>{valueset("")}}>Open this select menu</option>
+                            <option name="mainteacher" value="mainteacher" onClick={()=>{valueset("mainteacher")}}>Main Teacher</option>
+                            <option name="subteacher" value="subteacher" onClick={()=>{valueset("subteacher")}}>Subject Teacher</option>
+                            <option name="student" value="student" onClick={()=>{valueset("student")}}>Student</option>
                         </Form.Select>
-                        <button type="submit" className="ms-2"onClick={()=>{changerole()}}>Change</button>
-                        <i className="ms-2 bi bi-x-lg" onClick={changestatus}></i>
-                    </Form> 
+                    </Form>  */}
                 </div>
                 :
                 // <div>A</div>
