@@ -1,10 +1,15 @@
-import React , { useEffect , useState } from 'react'
-import { Form } from 'react-bootstrap'
+import React , { useEffect , useState } from 'react';
+import { Form } from 'react-bootstrap';
+import axios from 'axios';
+
 function Edit(props) {
     const [ Status , setStatus ] = useState(props.status);
     const [ Ownerstatus , setOwnerstatus ] = useState(props.Ownerstatus) 
     const [ value , setValue ] = useState("");
     // var editstatus=false;
+    const [Classes , setClass] = useState(props.Classs);
+    const email = props.person.email;
+    const name = props.person.name;
     const changestatus = () =>
     {
         setStatus(!Status);
@@ -17,10 +22,29 @@ function Edit(props) {
 
     const changerole = (e) =>
     {
-        e.preventDefault();
-        console.log(value);
+        // e.preventDefault();
+        if(value!="")
+        {
+            const data=
+            {
+                "person":props.person,
+                "value":value,
+                "Class":Classes,
+            }
+            axios.post("http://localhost:5000/api/classes/edit/people",data)
+                .then(()=>{})
+                .catch((err)=>console.log(err));
+            // console.log(value);
+        // console.log(email);
+        // console.log(name);
         // setValue(e.target.value);
         // console.log(value,"123");
+        }
+        else
+        {
+            console.log("In else");
+        }
+
     }
 
     if(Ownerstatus=="mainteacher")

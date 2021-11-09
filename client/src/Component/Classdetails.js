@@ -147,7 +147,9 @@ const list = (content,name)=>
                                 ?
                                 <Edit 
                                     status={false} 
+                                    person={things}
                                     Ownerstatus={Ownerstatus}
+                                    Classs={Classs}
                                 />
                                 :
                                 <div>
@@ -185,10 +187,10 @@ const list = (content,name)=>
 if(props.place=="POST")
 {
 return (
-<div style={{marginLeft:"10px", marginTop:"5px"}} className="fs-2 fw-bold">
+    <div style={{marginLeft:"10px", marginTop:"5px"}} className="fs-2 fw-bold">
         {top()}
             In POST
-        </div>
+    </div>
         )
 }
 

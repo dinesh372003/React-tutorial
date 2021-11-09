@@ -1,0 +1,12 @@
+Recent Todo Lsit :
+
+    . Disable edit option only for the particular user 
+        and not for all other "mainteacher"
+
+    . Check whether the functionality till now works properly
+    
+    . People's list for non-mainteacher canditate
+    
+Completed:
+
+    . Post request to change the role

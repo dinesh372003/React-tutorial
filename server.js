@@ -54,13 +54,7 @@ const storeclass=(code,datas)=>
             "name":datas.teacher.fname,
             "lname":datas.teacher.lname,
             "email":datas.teacher.email,
-        };
-    classes.subteacher=
-        {
-            "name":datas.teacher.fname,
-            "lname":datas.teacher.lname,
-            "email":datas.teacher.email,
-        };
+        }
     classes.students;
     classes.save()
     .then((result)=>
@@ -84,8 +78,11 @@ const storeclass=(code,datas)=>
 }
 
 app.use(cors());
+
 app.listen(PORT);
+
 console.log("Listening on port "+PORT);
+
 //Connect mongoDB
 mongoose.connect(database,{useNewUrlParser:true,useUnifiedTopology:true})
     .then(result=>
@@ -93,6 +90,7 @@ mongoose.connect(database,{useNewUrlParser:true,useUnifiedTopology:true})
         console.log("Connected MongoDb...");
     })
     .catch((err)=>console.log(err))
+
 app.get("/api/users",(req,res)=>
 {
     User.find()
@@ -103,6 +101,7 @@ app.get("/api/users",(req,res)=>
         })
     .catch(err=>console.log(err));
 })
+
 app.get("/api/classes",(req,res)=>
 {
     Class.find()
@@ -113,11 +112,13 @@ app.get("/api/classes",(req,res)=>
         })
     .catch(err=>console.log(err));
 })
+
 app.post("/api/classes/create",(req,res)=>
 {
     var datas=req.body;
     randomcode(datas);
 })
+
 app.post("/api/classes/join",(req,res)=>
 {
     var datas=req.body;
@@ -151,6 +152,7 @@ app.post("/api/classes/join",(req,res)=>
                 })
         })
     .catch(err=>console.log(err));
+
 const updateclass=(id,name)=>
 {
     Class.findOneAndUpdate(
@@ -168,6 +170,7 @@ const updateclass=(id,name)=>
             },
         },
     })    
+    
     .then(result=>{
         User.findByIdAndUpdate(datas.userid,
             {
@@ -181,9 +184,137 @@ const updateclass=(id,name)=>
             .then(result=>{})
             .catch(err=>console.log(err));
     })
+    
     .catch(err=>console.log(err));  
 }
 })
+
+app.post("/api/classes/edit/people",(req,res)=>
+{
+    var datas = req.body;
+    var person = datas.person;
+    var classes = datas.Class;
+    var initial;
+    // console.log(classes);
+    
+    classes.students.forEach(teacher=>{
+        if(teacher.email===person.email)
+        {
+            initial="students";
+            if(datas.value=="mainteacher")
+            {
+            Class.findOneAndUpdate(
+                {
+                    _id:classes._id,
+                },
+                {
+                    $pull:
+                    {
+                        students:person,
+                        // classes:result.id,
+                        // classname:datas.teamname,
+                        // teacher:result.id,
+                    },
+                    $push:
+                    {
+                        mainteacher:person,
+                    }
+                })    
+                .then(result=>{})
+                .catch(err=>console.log(err));  
+            }
+            
+            else if(datas.value=="subteacher")
+            {
+            Class.findOneAndUpdate(
+                {
+                    _id:classes._id,
+                },
+                {
+                    $pull:
+                    {
+                        students:person,
+                        // classes:result.id,
+                        // classname:datas.teamname,
+                        // teacher:result.id,
+                    },
+                    $push:
+                    {
+                        subteacher:person,
+                    }
+                })    
+                .then(result=>{})
+                .catch(err=>console.log(err));  
+            }
+        }
+    })//End of student for each
+
+    classes.subteacher.forEach(teacher=>{
+        if(teacher.email===person.email)
+        {
+            initial="subteacher";
+            
+            if(datas.value=="mainteacher")
+            {
+            Class.findOneAndUpdate(
+                {
+                    _id:classes._id,
+                },
+                {
+                    $pull:
+                    {
+                        subteacher:person,
+                        // classes:result.id,
+                        // classname:datas.teamname,
+                        // teacher:result.id,
+                    },
+                    $push:
+                    {
+                        mainteacher:person,
+                    }
+                })    
+                .then(result=>{})
+                .catch(err=>console.log(err));  
+            }
+            else if(datas.value=="student")
+            {
+            Class.findOneAndUpdate(
+                {
+                    _id:classes._id,
+                },
+                {
+                    $pull:
+                    {
+                        subteacher:person,
+                        // classes:result.id,
+                        // classname:datas.teamname,
+                        // teacher:result.id,
+                    },
+                    $push:
+                    {
+                        students:person,
+                    }
+                })    
+                .then(result=>{})
+                .catch(err=>console.log(err));  
+            
+            }
+        }
+    })
+
+    classes.students.forEach(student=>{
+        if(student.email===person.email)
+        {
+            initial="student";
+        }
+    })
+
+
+
+    console.log(initial,"-->",datas.value);
+
+})//End of post request 
+
 // app.use(express.static(path.join(__dirname, '/client/build')));
 // app.get('/', function (req,res) 
 // {
